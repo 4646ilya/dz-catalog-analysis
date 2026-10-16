@@ -3,10 +3,14 @@
 import math
 
 movies = [
-    {"title": "The Dune Chronicles", "year": 2021, "genres": {"sci-fi", "drama"},
-     "rating": 8.6, "duration_min": 155, "actors": ["T. Chalamet", "R. Ferguson", "O. Isaac"]},
-    {"title": "Kitchen Stories", "year": 2019, "genres": {"comedy", "drama"},
-     "rating": 7.1, "duration_min": 98, "actors": ["A. Novak", "M. Ferguson"]},
+    {"title": "The Dune Chronicles", "year": 2021, 
+     "genres": {"sci-fi", "drama"},
+     "rating": 8.6, "duration_min": 155, 
+     "actors": ["T. Chalamet", "R. Ferguson", "O. Isaac"]},
+    {"title": "Kitchen Stories", "year": 2019, 
+     "genres": {"comedy", "drama"},
+     "rating": 7.1, "duration_min": 98, 
+     "actors": ["A. Novak", "M. Ferguson"]},
     {"title": "silent hours", "year": 2016, "genres": {"thriller", "drama"},
      "rating": 6.4, "duration_min": 112, "actors": ["J. Bloom", "K. Lee"]},
     {"title": "Comet Racers", "year": 2023, "genres": {"sci-fi", "action"},
@@ -49,3 +53,31 @@ def duration_in_hours(minutes):
     return f"{hours}ч {mins}м"
 
 print(duration_in_hours(movies[0]["duration_min"]))
+
+
+
+def rating_tier(rating):
+    if rating >= 9: 
+        return "шедевр"  
+    elif  rating >= 7:
+        return "хорошо"
+    return "средне" if rating >= 5 else "слабо"
+
+print(rating_tier(9.2))
+print(rating_tier(7.3))
+print(rating_tier(6.0))
+print(rating_tier(4.8))
+
+def decade_label(year):
+    match year:
+        case _ if year > 2020:
+            return "новые"
+        case _ if year >= 2015:
+            return "недавние"
+        case _ if year < 2015:
+            return "старые"
+
+print(decade_label(2024))   
+print(decade_label(2020))   
+print(decade_label(2015))   
+print(decade_label(2011)) 
