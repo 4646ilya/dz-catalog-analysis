@@ -81,3 +81,28 @@ print(decade_label(2024))
 print(decade_label(2020))   
 print(decade_label(2015))   
 print(decade_label(2011)) 
+
+for movie in movies:
+    if 'comedy' in movie["genres"]:
+        continue
+    print(movie["title"])
+
+
+i = 0
+while i < len(movies):
+    movie = movies[i]
+    if movie["rating"] > 9.0:
+        print(movie["title"])
+        break
+    i += 1
+else:
+    print("Шедевров не найдено")
+
+
+def count_long_movies(movies, threshold=120):
+    count = 0
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count += 1
+    return count
+print(count_long_movies(movies))
