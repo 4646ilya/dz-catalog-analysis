@@ -185,3 +185,34 @@ def genres_only_in_one(movies_a, movies_b):
     genres_b = all_genres(movies_b)
     return genres_a - genres_b
 print (genres_only_in_one(movies[5:6], movies[:5]))
+
+def iter_high_rated(movies, min_rating=8.0):
+    for movie in movies:
+        if movie["rating"] >= min_rating:
+            yield movie
+
+for movie in iter_high_rated(movies):
+    print(format_report_line(movie))
+
+total_duration = sum(m["duration_min"] for m in movies if m["rating"] > 7)   # 713 
+print (total_duration)
+
+def build_report(movies):
+    print("ОТЧЁТ ПО КАТАЛОГУ")
+    print(f"Средний рейтинг: {average_rating(movies)}")
+    stats = catalog_age_stats(movies)
+    print(f"Средний возраст фильмов: {stats[2]} лет")
+
+    title_to_movie = { movie["title"]: movie for movie in movies }
+    print("Топ-3 фильма:")
+    for title, _ in top_n_by_rating(movies):
+        print(format_report_line(title_to_movie[title]))
+
+    print("Фильмов по жанрам:")
+    counts = count_by_genre(movies)
+    for genre, count in sorted(counts.items(), key=lambda item: item[1], reverse=True):
+        print(f"{genre} — {count}")
+
+    print(f"Все жанры каталога: {', '.join(sorted(all_genres(movies)))}")
+
+build_report(movies)
