@@ -168,4 +168,20 @@ above_average = {
     for movie in movies 
     if movie["rating"] > average }
 print(above_average)
-            
+
+def all_genres(movies):
+    genres = set()
+    for movie in movies:
+        genres = genres | movie["genres"] 
+    return genres
+print(all_genres(movies))
+
+def common_actors(movie1, movie2):
+    return set(movie1["actors"]) & set(movie2["actors"])
+print(common_actors(movies[0], movies[3]))
+
+def genres_only_in_one(movies_a, movies_b):
+    genres_a = all_genres(movies_a)
+    genres_b = all_genres(movies_b)
+    return genres_a - genres_b
+print (genres_only_in_one(movies[5:6], movies[:5]))
