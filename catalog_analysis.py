@@ -163,6 +163,9 @@ def actor_filmography(movies):
 print(actor_filmography(movies))      
 
 average = average_rating(movies)
-above_average = { movie["title"]: movie["rating"] for movie in movies if movie["rating"] > average }
+above_average = { 
+    movie["title"]: movie["rating"] 
+    for movie in movies 
+    if movie["rating"] > average }
 print(above_average)
             
